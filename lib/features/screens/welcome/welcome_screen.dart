@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:login/fade_in_animation/animation_design.dart';
 import 'package:login/fade_in_animation/fade_in_animation_model.dart';
+import 'package:login/features/screens/login/login_screen.dart';
 
 import '../../../fade_in_animation/fade_in_animation_controller.dart';
 
@@ -64,7 +65,7 @@ class WelcomeScreen extends StatelessWidget {
                     children: [
                       Expanded(
                         child: OutlinedButton(
-                          onPressed: () {},
+                          onPressed: () => Get.to(()=>const LoginScreen()),
                           style: OutlinedButton.styleFrom(
                             shape: const RoundedRectangleBorder(),
                             foregroundColor: const Color(0xff272727),
