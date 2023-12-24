@@ -6,7 +6,7 @@ import 'package:login/fade_in_animation/fade_in_animation_model.dart';
 import '../../../fade_in_animation/animation_design.dart';
 
 class SplashScreen extends StatelessWidget {
-  SplashScreen({super.key});
+  const SplashScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -73,8 +73,8 @@ class SplashScreen extends StatelessWidget {
             animate: TAnimatePosition(
               bottomBefore: -40,
               bottomAfter: 40,
-              rightAfter: -20,
-              rightBefore: 20,
+              rightAfter: 10,
+              rightBefore: -10,
             ),
             child: Container(
               width: 50,
