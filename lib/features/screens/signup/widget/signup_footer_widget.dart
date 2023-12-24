@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class LoginFooterWidget extends StatelessWidget {
-  const LoginFooterWidget({
+class SignUpFooterWidget extends StatelessWidget {
+  const SignUpFooterWidget({
     super.key,
   });
 
@@ -31,10 +31,10 @@ class LoginFooterWidget extends StatelessWidget {
         ),
         const SizedBox(height: 15,),
         TextButton(onPressed: (){}, child:
-        Text.rich(TextSpan(text: 'Dont have an account? ',
+        Text.rich(TextSpan(text: 'Already have an account? ',
           style: Theme.of(context).textTheme.bodyMedium,
           children:  [
-            TextSpan(text: 'Sign Up'.toUpperCase(),
+            TextSpan(text: 'Login'.toUpperCase(),
               style: const TextStyle(color: Colors.blue,),),
           ],),),
         ),
