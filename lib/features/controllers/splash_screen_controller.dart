@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-import 'package:login/onboarding_screen.dart';
+import 'package:login/features/screens/onboarding/onboarding_screen.dart';
 class SplashScreenController extends GetxController{
   static SplashScreenController get find => Get.find();
   RxBool animate = false.obs;

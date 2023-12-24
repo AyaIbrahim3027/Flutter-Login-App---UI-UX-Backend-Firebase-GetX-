@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:liquid_swipe/PageHelpers/LiquidController.dart';
 
-import 'onboarding_model.dart';
-import 'onboarding_page_widget.dart';
+import '../models/onboarding_model.dart';
+import '../screens/onboarding/widget/onboarding_page_widget.dart';
 
 class OnBoardingController extends GetxController {
   final controller = LiquidController();

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'onboarding_model.dart';
+import '../../../models/onboarding_model.dart';
 class OnBoardingPageWidget extends StatelessWidget {
   const OnBoardingPageWidget({
     super.key,
