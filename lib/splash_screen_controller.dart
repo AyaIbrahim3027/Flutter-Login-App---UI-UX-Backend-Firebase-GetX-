@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-import 'package:login/welcome_screen.dart';
+import 'package:login/onboarding_screen.dart';
 class SplashScreenController extends GetxController{
   static SplashScreenController get find => Get.find();
   RxBool animate = false.obs;
@@ -8,7 +8,7 @@ class SplashScreenController extends GetxController{
     await Future.delayed(const Duration(milliseconds: 500));
     animate.value = true;
     await Future.delayed(const Duration(milliseconds: 5000));
-    Get.to(WelcomeScreen());
-
+    // Get.to(OnBoadringScreen());
+    Get.to(() => OnBoadringScreen());
   }
 }
