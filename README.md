@@ -3,5 +3,6 @@
 - create Onboarding Screen (Liquid Swipe | Smooth Page Indicator)
 - create welcome page UI
 - create Login Page UI
+- create Signup page UI
   
 
