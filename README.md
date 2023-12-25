@@ -4,5 +4,7 @@
 - create welcome page UI
 - create Login Page UI
 - create Signup page UI
+- create Forget Password UI
+- create OTP Verification Screen UI
   
 
