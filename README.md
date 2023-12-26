@@ -9,5 +9,7 @@
 - create Dashboard UI
 - Firebase Auth using email and password
 - Firebase Phone Number OTP Authentication
+- create Profile Page UI
+  
   
 
