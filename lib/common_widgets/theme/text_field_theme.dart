@@ -2,12 +2,15 @@ import 'package:flutter/material.dart';
 
 class TTextFormFieldTheme{
   static InputDecorationTheme lightInputDecorationTheme =
-  const InputDecorationTheme(
-      border: OutlineInputBorder(),
-      prefixIconColor: Color(0xff272727) ,
-      floatingLabelStyle: TextStyle(color: Color(0xff272727)),
+   InputDecorationTheme(
+      border: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(100),
+      ),
+      prefixIconColor: const Color(0xff272727) ,
+      floatingLabelStyle: const TextStyle(color: Color(0xff272727)),
       focusedBorder: OutlineInputBorder(
-        borderSide: BorderSide(
+        borderRadius: BorderRadius.circular(100),
+        borderSide: const BorderSide(
           width: 2,
           color: Color(0xff272727),
         ),
@@ -15,12 +18,15 @@ class TTextFormFieldTheme{
   );
 
   static InputDecorationTheme darkInputDecorationTheme =
-  const InputDecorationTheme(
-      border: OutlineInputBorder(),
-      prefixIconColor: Color(0xFFFFE082) ,
-      floatingLabelStyle: TextStyle(color: Color(0xFFFFE082)),
+   InputDecorationTheme(
+      border: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(100),
+      ),
+      prefixIconColor: const Color(0xFFFFE082) ,
+      floatingLabelStyle: const TextStyle(color: Color(0xFFFFE082)),
       focusedBorder: OutlineInputBorder(
-        borderSide: BorderSide(
+        borderRadius: BorderRadius.circular(100),
+        borderSide: const BorderSide(
           width: 2,
           color: Color(0xFFFFE082),
         ),

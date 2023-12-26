@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:login/repos/auth_repo/auth_repo.dart';
+import 'package:get/get.dart';
+import 'package:login/features/core/screens/profile/profile_screen.dart';
 
 class DashboardAppBar extends StatelessWidget implements PreferredSizeWidget{
   const DashboardAppBar({
@@ -28,7 +29,8 @@ class DashboardAppBar extends StatelessWidget implements PreferredSizeWidget{
           margin: const EdgeInsets.only(right: 20),
           child: IconButton(
             onPressed: () {
-              AuthRepo.instance.logout();
+              // AuthRepo.instance.logout();
+              Get.to(() => const ProfileScreen());
             },
             icon: const Image(
               image: AssetImage('assets/woman.png'),
