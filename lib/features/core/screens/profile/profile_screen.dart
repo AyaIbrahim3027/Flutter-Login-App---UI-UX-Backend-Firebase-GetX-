@@ -5,6 +5,8 @@ import 'package:login/features/core/screens/profile/update_profile_screen.dart';
 import 'package:login/features/core/screens/profile/widget/appbar.dart';
 import 'package:login/features/core/screens/profile/widget/profile_menu_widget.dart';
 
+import '../../../../repos/auth_repo/auth_repo.dart';
+
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
 
@@ -124,7 +126,9 @@ class ProfileScreen extends StatelessWidget {
                 icon: LineAwesomeIcons.alternate_sign_out,
                 textColor: Colors.red,
                 endIcon: false,
-                onPress: () {},
+                onPress: () {
+                  AuthRepo.instance.logout();
+                },
               ),
             ],
           ),
