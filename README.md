@@ -8,5 +8,6 @@
 - create OTP Verification Screen UI
 - create Dashboard UI
 - Firebase Auth using email and password
+- Firebase Phone Number OTP Authentication
   
 
