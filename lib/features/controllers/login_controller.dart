@@ -11,6 +11,9 @@ class LoginController extends GetxController {
 
   // Call this function from design & it will do the rest
   void loginUser(String email, String password) {
-    AuthRepo.instance.loginWithEmailAndPassword(email, password);
+    String? error = AuthRepo.instance.loginWithEmailAndPassword(email, password) as String;
+    if (error != null) {
+      Get.showSnackbar(GetSnackBar(message: error.toString()));
+    }
   }
 }

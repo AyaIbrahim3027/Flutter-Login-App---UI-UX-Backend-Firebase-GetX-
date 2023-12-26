@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:login/features/controllers/signup_controller.dart';
+import 'package:login/features/screens/forget_password/forget_password_otp/otp_screen.dart';
 
 class SignUpFormWidget extends StatelessWidget {
   const SignUpFormWidget({
@@ -72,9 +73,12 @@ class SignUpFormWidget extends StatelessWidget {
               child: ElevatedButton(
                 onPressed: () {
                   if (formKey.currentState!.validate()) {
-                    SignUpController.instance.registerUser(
-                        controller.email.text.trim(),
-                        controller.password.text.trim());
+                    // SignUpController.instance.registerUser(
+                    //     controller.email.text.trim(),
+                    //     controller.password.text.trim());
+                    SignUpController.instance
+                        .phoneAuthentication(controller.phoneNumber.text.trim());
+                    Get.to(()=> const OTPScreen());
                   }
                 },
                 style: ElevatedButton.styleFrom(

@@ -11,6 +11,7 @@ class AuthRepo extends GetxController {
   // variable
   final auth = FirebaseAuth.instance;
   late final Rx<User?> firebaseUser;
+  var verificationId = ''.obs;
 
   @override
   void onReady() {
@@ -21,11 +22,47 @@ class AuthRepo extends GetxController {
     // super.onReady();
   }
 
+  // setting initial screen onload
   setInitialScreen(User? user) {
     user == null
         ? Get.offAll(() => const WelcomeScreen())
         : Get.offAll(() => const DashBoard());
   }
+
+  //func
+  Future<void> phoneAuthentication(String phoneNo) async {
+    await auth.verifyPhoneNumber(
+      phoneNumber: phoneNo,
+      verificationCompleted: (credential) async {
+        await auth.signInWithCredential(credential);
+      },
+      verificationFailed: (e) {
+        if (e.code == 'invalid-phone-number') {
+          Get.snackbar('Error', 'The provided phone number is not valid.');
+        } else {
+          Get.snackbar('Error', 'Something went wrong, Try again.');
+        }
+      },
+      codeSent: (verificationId, resendToken) {
+        this.verificationId.value = verificationId;
+      },
+      codeAutoRetrievalTimeout: (verificationId) {
+        this.verificationId.value = verificationId;
+      },
+    );
+  }
+
+
+
+  Future<bool> verifyOTP(String otp) async {
+    var credential = await auth.signInWithCredential(
+        PhoneAuthProvider.credential(
+            verificationId: verificationId.value, smsCode: otp));
+
+    return credential.user != null ? true : false;
+  }
+
+
 
   Future<void> createUserWithEmailAndPassword(
       String email, String password) async {
@@ -36,7 +73,6 @@ class AuthRepo extends GetxController {
       firebaseUser.value != null
           ? Get.offAll(() => const DashBoard())
           : Get.to(() => const WelcomeScreen());
-
     } on FirebaseAuthException catch (e) {
       final ex = SignUpWithEmailAndPasswordFailure.code(e.code);
       print('Firebase Auth Exception - ${ex.message}');
@@ -55,7 +91,6 @@ class AuthRepo extends GetxController {
       firebaseUser.value != null
           ? Get.offAll(() => const DashBoard())
           : Get.to(() => const WelcomeScreen());
-
     } on FirebaseAuthException catch (e) {
       final ex = LoginWithEmailAndPasswordFailure.code(e.code);
       print('Firebase Auth Exception - ${ex.message}');
