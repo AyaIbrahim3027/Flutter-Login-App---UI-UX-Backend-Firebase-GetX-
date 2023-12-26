@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:login/core/screens/dashboard/dashboard.dart';
+import 'package:login/features/controllers/login_controller.dart';
 import 'package:login/features/screens/forget_password/forget_password_options/forget_password_model_bottom_sheet.dart';
 
 class LoginForm extends StatelessWidget {
@@ -10,13 +11,18 @@ class LoginForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final controller = Get.put(LoginController());
+    final formKey = GlobalKey<FormState>();
+
     return Form(
+      key: formKey,
       child: Container(
         padding: const EdgeInsets.symmetric(vertical: 20),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             TextFormField(
+              controller: controller.email,
               decoration: const InputDecoration(
                 prefixIcon: Icon(Icons.person_outline_outlined),
                 labelText: 'Email',
@@ -28,6 +34,7 @@ class LoginForm extends StatelessWidget {
               height: 15,
             ),
             TextFormField(
+              controller: controller.password,
               decoration: InputDecoration(
                   prefixIcon: const Icon(Icons.lock),
                   labelText: 'Password',
@@ -56,7 +63,13 @@ class LoginForm extends StatelessWidget {
               width: double.infinity,
               child: ElevatedButton(
                   onPressed: () {
-                    Get.to(()=> const DashBoard());
+                    if (formKey.currentState!.validate()) {
+                      LoginController.instance.loginUser(
+                          controller.email.text.trim(),
+                          controller.password.text.trim());
+                    }
+
+                    // Get.to(()=> const DashBoard());
                   },
                   style: ElevatedButton.styleFrom(
                     elevation: 0,

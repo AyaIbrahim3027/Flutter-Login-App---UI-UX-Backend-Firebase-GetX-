@@ -1,9 +1,18 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:login/common_widgets/theme/theme.dart';
 import 'package:login/features/screens/splash_screen/splash_screen.dart';
+import 'package:login/repos/auth_repo/auth_repo.dart';
 
-void main() {
+import 'firebase_options.dart';
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  ).then((value) => Get.put(AuthRepo()));
+
   runApp(const MyApp());
 }
 
@@ -20,8 +29,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       defaultTransition: Transition.leftToRightWithFade,
       transitionDuration: const Duration(milliseconds: 500),
-      home:  const SplashScreen(),
+      home: const CircularProgressIndicator(),
     );
   }
 }
-
