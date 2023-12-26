@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:login/fade_in_animation/fade_in_animation_controller.dart';
 import 'package:login/fade_in_animation/fade_in_animation_model.dart';
 
-import '../../../fade_in_animation/animation_design.dart';
+import '../../../../fade_in_animation/animation_design.dart';
 
 class SplashScreen extends StatelessWidget {
   const SplashScreen({super.key});

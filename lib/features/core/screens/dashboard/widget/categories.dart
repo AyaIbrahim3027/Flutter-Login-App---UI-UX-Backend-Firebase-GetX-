@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:login/core/models/dashboard/categories_model.dart';
+
+import '../../../models/dashboard/categories_model.dart';
 
 class DashboardCategories extends StatelessWidget {
   const DashboardCategories({

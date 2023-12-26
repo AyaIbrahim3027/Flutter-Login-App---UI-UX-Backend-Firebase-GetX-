@@ -1,9 +1,10 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
-import 'package:login/core/screens/dashboard/dashboard.dart';
-import 'package:login/features/screens/welcome/welcome_screen.dart';
 import 'package:login/repos/auth_repo/exceptions/login_email_password_failure.dart';
 import 'package:login/repos/auth_repo/exceptions/signup_email_password_failure.dart';
+
+import '../../features/authentication/screens/welcome/welcome_screen.dart';
+import '../../features/core/screens/dashboard/dashboard.dart';
 
 class AuthRepo extends GetxController {
   static AuthRepo get instance => Get.find();
@@ -15,7 +16,7 @@ class AuthRepo extends GetxController {
 
   @override
   void onReady() {
-    Future.delayed(Duration(seconds: 6));
+    Future.delayed(const Duration(seconds: 6));
     firebaseUser = Rx<User?>(auth.currentUser);
     firebaseUser.bindStream(auth.userChanges());
     ever(firebaseUser, setInitialScreen);

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
 import 'package:get/get.dart';
-import 'package:login/features/controllers/otp_controller.dart';
+
+import '../../../controllers/otp_controller.dart';
 
 class OTPScreen extends StatelessWidget {
   const OTPScreen({super.key});

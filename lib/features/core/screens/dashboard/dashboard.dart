@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:login/core/screens/dashboard/widget/appbar.dart';
-import 'package:login/core/screens/dashboard/widget/banners.dart';
-import 'package:login/core/screens/dashboard/widget/categories.dart';
-import 'package:login/core/screens/dashboard/widget/heading.dart';
-import 'package:login/core/screens/dashboard/widget/search.dart';
-import 'package:login/core/screens/dashboard/widget/top_courses.dart';
+import 'package:login/features/core/screens/dashboard/widget/appbar.dart';
+import 'package:login/features/core/screens/dashboard/widget/banners.dart';
+import 'package:login/features/core/screens/dashboard/widget/categories.dart';
+import 'package:login/features/core/screens/dashboard/widget/heading.dart';
+import 'package:login/features/core/screens/dashboard/widget/search.dart';
+import 'package:login/features/core/screens/dashboard/widget/top_courses.dart';
 
 class DashBoard extends StatelessWidget {
   const DashBoard({super.key});

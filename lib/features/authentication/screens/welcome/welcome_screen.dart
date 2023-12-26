@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:login/fade_in_animation/animation_design.dart';
 import 'package:login/fade_in_animation/fade_in_animation_model.dart';
-import 'package:login/features/screens/login/login_screen.dart';
-import 'package:login/features/screens/signup/signup_screen.dart';
 
-import '../../../fade_in_animation/fade_in_animation_controller.dart';
+import '../../../../fade_in_animation/fade_in_animation_controller.dart';
+import '../login/login_screen.dart';
+import '../signup/signup_screen.dart';
 
 class WelcomeScreen extends StatelessWidget {
    const WelcomeScreen({super.key});

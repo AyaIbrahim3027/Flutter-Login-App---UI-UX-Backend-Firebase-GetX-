@@ -1,8 +1,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:login/features/screens/forget_password/forget_password_mail/forget_password_mail_screen.dart';
 
+import '../forget_password_mail/forget_password_mail_screen.dart';
 import 'forget_password_btn_widget.dart';
 
 class ForgetPasswordScreen{

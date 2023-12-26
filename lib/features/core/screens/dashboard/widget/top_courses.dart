@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:login/core/models/dashboard/courses_model.dart';
+
+import '../../../models/dashboard/courses_model.dart';
 
 class DashboardTopCourses extends StatelessWidget {
   const DashboardTopCourses({

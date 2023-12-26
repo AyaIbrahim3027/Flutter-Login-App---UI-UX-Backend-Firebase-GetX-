@@ -1,7 +1,8 @@
 
 import 'package:get/get.dart';
-import 'package:login/core/screens/dashboard/dashboard.dart';
 import 'package:login/repos/auth_repo/auth_repo.dart';
+
+import '../../core/screens/dashboard/dashboard.dart';
 
 class OTPController extends GetxController{
   static OTPController get instance => Get.find();

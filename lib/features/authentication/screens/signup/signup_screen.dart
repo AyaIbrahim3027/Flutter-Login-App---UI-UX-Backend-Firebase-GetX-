@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:login/common_widgets/form/form_header_widget.dart';
-import 'package:login/features/screens/signup/widget/signup_footer_widget.dart';
-import 'package:login/features/screens/signup/widget/signup_form_widget.dart';
+import 'package:login/features/authentication/screens/signup/widget/signup_footer_widget.dart';
+import 'package:login/features/authentication/screens/signup/widget/signup_form_widget.dart';
 
 class SignUpScreen extends StatelessWidget {
   const SignUpScreen({super.key});

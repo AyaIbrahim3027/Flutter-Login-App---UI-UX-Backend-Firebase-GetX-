@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:login/core/screens/dashboard/dashboard.dart';
-import 'package:login/features/controllers/login_controller.dart';
-import 'package:login/features/screens/forget_password/forget_password_options/forget_password_model_bottom_sheet.dart';
+import '../../../controllers/login_controller.dart';
+import '../../forget_password/forget_password_options/forget_password_model_bottom_sheet.dart';
 
 class LoginForm extends StatelessWidget {
   const LoginForm({

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:login/features/controllers/signup_controller.dart';
-import 'package:login/features/screens/forget_password/forget_password_otp/otp_screen.dart';
+import '../../../controllers/signup_controller.dart';
+import '../../forget_password/forget_password_otp/otp_screen.dart';
 
 class SignUpFormWidget extends StatelessWidget {
   const SignUpFormWidget({

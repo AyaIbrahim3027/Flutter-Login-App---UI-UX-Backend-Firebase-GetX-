@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:login/features/screens/login/widget/login_footer_widget.dart';
-
+import 'package:login/features/authentication/screens/login/widget/login_footer_widget.dart';
 import 'widget/login_form_widget.dart';
 import 'widget/login_header_widget.dart';
 
