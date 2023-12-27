@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 import 'package:login/features/core/screens/profile/update_profile_screen.dart';
+import 'package:login/features/core/screens/profile/user_management_screen.dart';
 import 'package:login/features/core/screens/profile/widget/appbar.dart';
 import 'package:login/features/core/screens/profile/widget/profile_menu_widget.dart';
 
@@ -112,7 +113,7 @@ class ProfileScreen extends StatelessWidget {
               ProfileMenuWidget(
                 title: "User Management",
                 icon: LineAwesomeIcons.user_check,
-                onPress: () {},
+                onPress: () => Get.to(() => const UserManagementScreen()),
               ),
               const Divider(),
               const SizedBox(height: 10),
