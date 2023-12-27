@@ -27,4 +27,17 @@ class UserRepo extends GetxController {
     });
 
   }
+
+  // fetch all users ot user details
+  Future<UserModel> getUserDetails(String email)async{
+    final snapshot = await db.collection('Users').where('Email',isEqualTo: email).get();
+    final userDate = snapshot.docs.map((e) => UserModel.fromSnapshot(e)).single;
+    return userDate;
+  }
+
+  Future<List<UserModel>> allUsers()async{
+    final snapshot = await db.collection('Users').get();
+    final userDate = snapshot.docs.map((e) => UserModel.fromSnapshot(e)).toList();
+    return userDate;
+  }
 }
