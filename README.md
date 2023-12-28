@@ -10,6 +10,8 @@
 - Firebase Auth using email and password
 - Firebase Phone Number OTP Authentication
 - create Profile Page UI
+- create Mail Verification Page UI
+- Email Verification & Google authentication
   
   
 
