@@ -63,9 +63,7 @@ class LoginForm extends StatelessWidget {
               child: ElevatedButton(
                   onPressed: () {
                     if (formKey.currentState!.validate()) {
-                      LoginController.instance.loginUser(
-                          controller.email.text.trim(),
-                          controller.password.text.trim());
+                      LoginController.instance.loginUser();
                     }
 
                     // Get.to(()=> const DashBoard());

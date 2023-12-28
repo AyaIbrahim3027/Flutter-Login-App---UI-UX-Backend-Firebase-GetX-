@@ -10,10 +10,30 @@ class LoginController extends GetxController {
   final password = TextEditingController();
 
   // Call this function from design & it will do the rest
-  void loginUser(String email, String password) {
-    String? error = AuthRepo.instance.loginWithEmailAndPassword(email, password) as String;
-    if (error != null) {
-      Get.showSnackbar(GetSnackBar(message: error.toString()));
+  Future<void> loginUser() async {
+    try {
+      final auth = AuthRepo.instance;
+      await auth.loginWithEmailAndPassword(
+          email.text.trim(), password.text.trim());
+      auth.setInitialScreen(auth.firebaseUser.value);
+    } catch (e) {
+      Get.snackbar('Error', e.toString(),
+          snackPosition: SnackPosition.BOTTOM,
+          backgroundColor: Colors.redAccent.withOpacity(0.1),
+          colorText: Colors.red);
+    }
+  }
+
+  Future<void> googleSignIn() async {
+    try{
+      final auth = AuthRepo.instance;
+      await auth.signInWithGoogle();
+      auth.setInitialScreen(auth.firebaseUser.value);
+    }catch(e){
+      Get.snackbar('Error', e.toString(),
+          snackPosition: SnackPosition.BOTTOM,
+          backgroundColor: Colors.redAccent.withOpacity(0.1),
+          colorText: Colors.red);
     }
   }
 }

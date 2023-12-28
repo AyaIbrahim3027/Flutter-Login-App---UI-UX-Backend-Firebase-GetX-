@@ -1,7 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:get/get.dart';
-import 'package:login/repos/auth_repo/exceptions/login_email_password_failure.dart';
-import 'package:login/repos/auth_repo/exceptions/signup_email_password_failure.dart';
+import 'package:google_sign_in/google_sign_in.dart';
+import 'package:login/features/authentication/screens/mail_verification/mail_verification.dart';
+import 'package:login/repos/auth_repo/exceptions/t_exceptions.dart';
 
 import '../../features/authentication/screens/welcome/welcome_screen.dart';
 import '../../features/core/screens/dashboard/dashboard.dart';
@@ -12,25 +14,32 @@ class AuthRepo extends GetxController {
   // variable
   final auth = FirebaseAuth.instance;
   late final Rx<User?> firebaseUser;
-  var verificationId = ''.obs;
+  var phoneVerificationId = ''.obs;
+  late final GoogleSignInAccount googleUser;
 
   @override
   void onReady() {
-    Future.delayed(const Duration(seconds: 6));
+    // Future.delayed(const Duration(seconds: 6));
     firebaseUser = Rx<User?>(auth.currentUser);
     firebaseUser.bindStream(auth.userChanges());
-    ever(firebaseUser, setInitialScreen);
+    FlutterNativeSplash.remove();
+    // ever(firebaseUser, setInitialScreen);
+    setInitialScreen(firebaseUser.value);
     // super.onReady();
   }
 
-  // setting initial screen onload
+  // setting initial screen unload
   setInitialScreen(User? user) {
     user == null
         ? Get.offAll(() => const WelcomeScreen())
-        : Get.offAll(() => const DashBoard());
+        : user.emailVerified
+            ? Get.offAll(() => const DashBoard())
+            : Get.offAll(() => const MailVerificationScreen());
   }
 
   //func
+
+  // Register by phone
   Future<void> phoneAuthentication(String phoneNo) async {
     await auth.verifyPhoneNumber(
       phoneNumber: phoneNo,
@@ -45,26 +54,24 @@ class AuthRepo extends GetxController {
         }
       },
       codeSent: (verificationId, resendToken) {
-        this.verificationId.value = verificationId;
+        phoneVerificationId.value = verificationId;
       },
       codeAutoRetrievalTimeout: (verificationId) {
-        this.verificationId.value = verificationId;
+        phoneVerificationId.value = verificationId;
       },
     );
   }
 
-
-
+  // verify phone no by OTP
   Future<bool> verifyOTP(String otp) async {
     var credential = await auth.signInWithCredential(
         PhoneAuthProvider.credential(
-            verificationId: verificationId.value, smsCode: otp));
+            verificationId: phoneVerificationId.value, smsCode: otp));
 
     return credential.user != null ? true : false;
   }
 
-
-
+  // Register with email & pass
   Future<void> createUserWithEmailAndPassword(
       String email, String password) async {
     try {
@@ -75,16 +82,15 @@ class AuthRepo extends GetxController {
           ? Get.offAll(() => const DashBoard())
           : Get.to(() => const WelcomeScreen());
     } on FirebaseAuthException catch (e) {
-      final ex = SignUpWithEmailAndPasswordFailure.code(e.code);
-      print('Firebase Auth Exception - ${ex.message}');
-      throw ex;
+      final ex = TExceptions.fromCode(e.code);
+      throw ex.message;
     } catch (_) {
-      final ex = SignUpWithEmailAndPasswordFailure();
-      print('Exception - ${ex.message}');
-      throw ex;
+      const ex = TExceptions();
+      throw ex.message;
     }
   }
 
+  // Login with email & pass
   Future<void> loginWithEmailAndPassword(String email, String password) async {
     try {
       await auth.signInWithEmailAndPassword(email: email, password: password);
@@ -93,15 +99,61 @@ class AuthRepo extends GetxController {
           ? Get.offAll(() => const DashBoard())
           : Get.to(() => const WelcomeScreen());
     } on FirebaseAuthException catch (e) {
-      final ex = LoginWithEmailAndPasswordFailure.code(e.code);
-      print('Firebase Auth Exception - ${ex.message}');
-      throw ex;
+      final ex = TExceptions.fromCode(e.code);
+      throw ex.message;
     } catch (_) {
-      final ex = LoginWithEmailAndPasswordFailure();
-      print('Exception - ${ex.message}');
-      throw ex;
+      const ex = TExceptions();
+      throw ex.message;
     }
   }
 
-  Future<void> logout() async => await auth.signOut();
+  //Verification
+  Future<void> sendEmailVerification() async {
+    try {
+      await auth.currentUser?.sendEmailVerification();
+    } on FirebaseAuthException catch (e) {
+      final ex = TExceptions.fromCode(e.code);
+      throw ex.message;
+    } catch (_) {
+      const ex = TExceptions();
+      throw ex.message;
+    }
+  }
+
+  // google
+  Future<UserCredential> signInWithGoogle() async {
+    try {
+      final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+
+      final GoogleSignInAuthentication? googleAuth =
+          await googleUser?.authentication;
+
+      final credential = GoogleAuthProvider.credential(
+          accessToken: googleAuth?.accessToken, idToken: googleAuth?.idToken);
+
+      return await FirebaseAuth.instance.signInWithCredential(credential);
+
+    } on FirebaseAuthException catch (e) {
+      final ex = TExceptions.fromCode(e.code);
+      throw ex.message;
+    } catch (_) {
+      const ex = TExceptions();
+      throw ex.message;
+    }
+  }
+
+  // logout
+  Future<void> logout() async {
+    try {
+      await auth.signOut();
+      await GoogleSignIn().signOut();
+      Get.offAll(() => const WelcomeScreen());
+    } on FirebaseException catch (e) {
+      throw e.message!;
+    } on FormatException catch (e) {
+      throw e.message;
+    } catch (e) {
+      throw 'Unable to logout, Try again';
+    }
+  }
 }

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:login/features/authentication/models/user_model.dart';
 import '../../../controllers/signup_controller.dart';
 
 class SignUpFormWidget extends StatelessWidget {
@@ -82,13 +81,13 @@ class SignUpFormWidget extends StatelessWidget {
                     // SignUpController.instance
                     //     .phoneAuthentication(controller.phoneNumber.text.trim());
 
-                    final user = UserModel(
-                      fullName: controller.fullName.text.trim(),
-                      email: controller.email.text.trim(),
-                      password: controller.password.text.trim(),
-                      phoneNo: controller.phoneNumber.text.trim(),
-                    );
-                    SignUpController.instance.createUser(user);
+                    // final user = UserModel(
+                    //   fullName: controller.fullName.text.trim(),
+                    //   email: controller.email.text.trim(),
+                    //   password: controller.password.text.trim(),
+                    //   phoneNo: controller.phoneNumber.text.trim(),
+                    // );
+                    SignUpController.instance.createUser();
                     // Get.to(() => const OTPScreen());
                   }
                 },
